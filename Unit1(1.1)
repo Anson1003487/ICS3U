@@ -1,0 +1,18 @@
+# this is a code comment
+name = "Leslie"
+print("Hello", name)
+
+Predict:# this is a code comment
+name = "Leslie"
+print("Hello", name)
+Hello, Leslie
+
+# this is a code comment
+name = "Leslie"
+print("Hello,", name)
+Hello, Leslie
+
+# this is a code comment
+name = "Anson"
+print("Hello,", name)
+Hello, Anson
