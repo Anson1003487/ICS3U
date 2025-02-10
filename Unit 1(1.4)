@@ -1,0 +1,8 @@
+modify:
+num = input("Please input a whole number: ") 
+num = int(num) 
+divisor=input("use any whole number expect zero:")
+divisor=int(divisor)
+num2 = num / divisor
+print("When", num, " is divided by divisor", end=" ")
+print("the result is:", num2)
