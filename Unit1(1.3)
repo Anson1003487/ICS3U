@@ -8,3 +8,12 @@ print("Sanjay has 6 bowls for 144 cookies.")
 Sanjay has 6 bowls for 144 cookies.
 
 TaskC:
+print("The number of cookies per bowl is:", 12+12)
+The number of cookies per bowl is: 24
+
+# This will get you by for now:
+print("There are ", 28, " people in this room.");
+print("Your total money spent is: ", (2.75+9.32+11.91))
+There are  28  people in this room.
+Your total money spent is:  23.98
+
