@@ -1,0 +1,8 @@
+birth_year = int(input("please input a birth year:"))
+age = int(input("please input age:"))
+step2 = birth_year * 2
+step3 = step2+5
+step4 = step3*50
+step5 = step4+age
+step6 = step5-250
+step7 = step6/100
