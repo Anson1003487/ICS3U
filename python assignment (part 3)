@@ -24,3 +24,7 @@ if output:
     print("Your change is: " + ", ".join(output) + ".")
 else:
     print("No change needed.")
+
+example:
+Please enter the amount of change in cents:  41
+Your change is: 1 quarter, 1 dime, 1 nickel, 1 penny.
