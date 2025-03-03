@@ -1,12 +1,28 @@
 prdit: No matter which answer I pick it will just give me one answer "I preety chetties"
 
 modify 1:
+print("Make a choice from the following menu: ")
+print("A: apples")
+print("B: bananas")
+print("C: cherries")
+
+ch = input("Your choice: ")
+
+if ch == "A":
+    print("I prefer apples")
+elif ch == "B":
+    print("I prefer bananas")
+elif ch == "C":
+    print("I prefer cherries")
+else:
+    print("Invalid choice! Please choose A, B, or C.")
+example:
 Make a choice from the following menu: 
 A: apples
 B: bananas
 C: cherries
-Your choice:  D
-I prefer cherries
+Your choice:  d
+Invalid choice! Please choose A, B, or C.
 
 Modify 2: Working with compound conditionals
 score = int(input("Enter your score (1-100): "))
