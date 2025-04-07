@@ -1,3 +1,10 @@
+# Student Name: [Anson Tang]
+# Student Number: [1003487]
+# Course Code: ICS3U
+# Part 2: The inner (or body) diagonal of a cube
+# Variable Dictionary:
+#   edge: Length of cube edge (float)
+#   diagonal: Calculated inner diagonal length (float)
 
 import math
 
