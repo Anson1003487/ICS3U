@@ -9,11 +9,14 @@
 
 print("Welcome to the even and odd detector!")
 print("This program determines if the product of two whole positive numbers will be even or odd!")
+# this is code comment
 
 num1 = int(input("Please enter your first number: "))
 num2 = int(input("Please enter your second number: "))
+#
 
 if num1 % 2 == 0 or num2 % 2 == 0:
     print(f"The product {num1} x {num2} will be an even number.")
 else:
     print(f"The product {num1} x {num2} will be an odd number.")
+#
