@@ -24,7 +24,7 @@ print(f"You have {max_attempts} attempts to guess correctly.\n")
 while attempts < max_attempts:
     attempts += 1  # Increment attempt counter
     
-    # Get and validate user input
+# Get and validate user input
     while True:
         try:
             guess = int(input(f"Attempt #{attempts}: ")) 
