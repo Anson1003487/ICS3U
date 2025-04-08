@@ -9,29 +9,49 @@
 #   attempts: Number of guesses used (int)
 #   max_attempts: Maximum allowed guesses (int)
 
-import random
+import random  
 
-target = random.randint(1, 100)
-attempts = 0
-max_attempts = 6
+# Initialize game variables
+target = random.randint(1, 100)  
+attempts = 0                     
+max_attempts = 6                
 
-print("Hello! Welcome to the number guessing game!")
-print("I am thinking of a number between 1 and 100.")
-print(f"You have a maximum of {max_attempts} tries.\n")
+# Print game instructions
+print("Guess the secret number between 1 and 100")
+print(f"You have {max_attempts} attempts to guess correctly.\n")
 
+# Main game loop - runs until max attempts reached
 while attempts < max_attempts:
-    attempts += 1
-    guess = int(input(f"Guess #{attempts}: "))
+    attempts += 1  # Increment attempt counter
     
+    # Get and validate user input
+    while True:
+        try:
+            guess = int(input(f"Attempt #{attempts}: ")) 
+            if 1 <= guess <= 100:  # Validate range
+                break
+            print("Please enter a number between 1-100")
+        except ValueError:  # Handle non-number input
+            print("Invalid input. Please enter a number.")
+
+    # Check guess against target
     if guess == target:
-        print("\nYou Guessed right!")
-        break
+        print(f"\nCongratulations! You guessed the number in {attempts} tries!")
+        break  
     elif guess < target:
-        print("Higher!")
+        print("Hint: Go higher!")  
     else:
-        print("Lower!")
+        print("Hint: Go lower!")   
 
-if attempts == max_attempts and guess != target:
-    print(f"\nSorry: you are out of guesses! The answer was {target}. Better luck next time!")
+    # Show remaining attempts
+    remaining = max_attempts - attempts
+    print(f"Remaining attempts: {remaining}\n")
 
+# If loop completes without correct guess
+else:  
+    print(f"\nGame over! The secret number was {target}.")
+    print("Better luck next time!")
+
+# Final message
+print("\nThanks for playing the Number Guessing Game!")
     
