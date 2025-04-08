@@ -43,10 +43,6 @@ while attempts < max_attempts:
     else:
         print("Hint: Go lower!")   
 
-    # Show remaining attempts
-    remaining = max_attempts - attempts
-    print(f"Remaining attempts: {remaining}\n")
-
 # If loop completes without correct guess
 else:  
     print(f"\nGame over! The secret number was {target}.")
