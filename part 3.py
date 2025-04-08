@@ -10,26 +10,21 @@
 #   pennies: Number of pennies (int)
 #   remaining: Remaining cents after each calculation (int)
 
-cents = int(input("Please enter the amount of change in cents: "))
-cents = cents % 100
+# Get cents amount (0-99)
+cents = int(input("Enter cents (0-99): "))
 
+# Calculate coins
 quarters = cents // 25
-remaining = cents % 25
+dimes = (cents % 25) // 10
+nickels = (cents % 25 % 10) // 5 
+pennies = cents % 5
 
-dimes = remaining // 10
-remaining = remaining % 10
+# Build output string
+output = []
+if quarters: output.append(f"{quarters} quarter{'s'[:quarters^1]}")
+if dimes: output.append(f"{dimes} dime{'s'[:dimes^1]}")
+if nickels: output.append(f"{nickels} nickel{'s'[:nickels^1]}")
+if pennies: output.append(f"{pennies} penn{'ies'[:pennies^1]}")
 
-nickels = remaining // 5
-pennies = remaining % 5
-
-parts = []
-if quarters > 0:
-    parts.append(f"{quarters} quarter{'s' if quarters != 1 else ''}")
-if dimes > 0:
-    parts.append(f"{dimes} dime{'s' if dimes != 1 else ''}")
-if nickels > 0:
-    parts.append(f"{nickels} nickel{'s' if nickels != 1 else ''}")
-if pennies > 0:
-    parts.append(f"{pennies} penn{'ies' if pennies != 1 else 'y'}")
-
-print(f"{cents} cents can be {', '.join(parts)}.")
+# Print result
+print(f"{cents} cents = {', '.join(output)}")
