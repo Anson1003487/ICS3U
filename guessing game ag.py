@@ -28,10 +28,10 @@ while attempts < max_attempts:
     while True:
         try:
             guess = int(input(f"Attempt #{attempts}: ")) 
-            if 1 <= guess <= 100:  # Validate range
+            if 1 <= guess <= 100:  
                 break
             print("Please enter a number between 1-100")
-        except ValueError:  # Handle non-number input
+        except ValueError: 
             print("Invalid input. Please enter a number.")
 
     # Check guess against target
