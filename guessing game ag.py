@@ -39,9 +39,9 @@ while attempts < max_attempts:
         print(f"\nCongratulations! You guessed the number in {attempts} tries!")
         break  
     elif guess < target:
-        print("Hint: Go higher!")  
+        print("Go higher!")  
     else:
-        print("Hint: Go lower!")   
+        print("Go lower!")   
 
 # If loop completes without correct guess
 else:  
