@@ -22,7 +22,7 @@ print(f"You have {max_attempts} attempts to guess correctly.\n")
 
 # Main game loop - runs until max attempts reached
 while attempts < max_attempts:
-    attempts += 1  # Increment attempt counter
+    attempts += 1  
     
 # Get and validate user input
     while True:
