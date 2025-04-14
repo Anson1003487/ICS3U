@@ -4,50 +4,55 @@
 # Course Code: ICS3U
 # Programming Assignment 2: A number guessing game
 # Variable Dictionary:
-#   target: The random number to guess (int)
-#   guess: User's current guess (int)
-#   attempts: Number of guesses used (int)
-#   max_attempts: Maximum allowed guesses (int)
+Variable Dictionary:
+#   target: Number to guess (1-100)
+#   guess: User's guessed number
+import random
 
-import random  
+# Generate target number
+target = random.randint(1, 100)
 
-# Initialize game variables
-target = random.randint(1, 100)  
-attempts = 0                     
-max_attempts = 6                
+print("Welcome to the Number Guessing Game!")
+print("Guess a number between 1-100 within 6 attempts\n")
 
-# Print game instructions
-print("Guess the secret number between 1 and 100")
-print(f"You have {max_attempts} attempts to guess correctly.\n")
-
-# Main game loop - runs until max attempts reached
-while attempts < max_attempts:
-    attempts += 1  
+# Attempt 1
+guess = int(input("Attempt 1: "))
+if guess == target:
+    print("Correct! You win!")
+else:
+    print("Higher!" if guess < target else "Lower!")
     
-# Get and validate user input
-    while True:
-        try:
-            guess = int(input(f"Attempt #{attempts}: ")) 
-            if 1 <= guess <= 100:  
-                break
-            print("Please enter a number between 1-100")
-        except ValueError: 
-            print("Invalid input. Please enter a number.")
-
-    # Check guess against target
+    # Attempt 2
+    guess = int(input("Attempt 2: "))
     if guess == target:
-        print(f"\nCongratulations! You guessed the number in {attempts} tries!")
-        break  
-    elif guess < target:
-        print("Go higher!")  
+        print("Correct! You win!")
     else:
-        print("Go lower!")   
-
-# If loop completes without correct guess
-else:  
-    print(f"\nGame over! The secret number was {target}.")
-    print("Better luck next time!")
-
-# Final message
-print("\nThanks for playing the Number Guessing Game!")
-    
+        print("Higher!" if guess < target else "Lower!")
+        
+        # Attempt 3
+        guess = int(input("Attempt 3: "))
+        if guess == target:
+            print("Correct! You win!")
+        else:
+            print("Higher!" if guess < target else "Lower!")
+            
+            # Attempt 4
+            guess = int(input("Attempt 4: "))
+            if guess == target:
+                print("Correct! You win!")
+            else:
+                print("Higher!" if guess < target else "Lower!")
+                
+                # Attempt 5
+                guess = int(input("Attempt 5: "))
+                if guess == target:
+                    print("Correct! You win!")
+                else:
+                    print("Higher!" if guess < target else "Lower!")
+                    
+                    # Attempt 6
+                    guess = int(input("Attempt 6: "))
+                    if guess == target:
+                        print("Correct! You win!")
+                    else:
+                        print(f"Game Over! The number was: {target}")
