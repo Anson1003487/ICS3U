@@ -7,6 +7,7 @@
 Variable Dictionary:
 #   target: Number to guess (1-100)
 #   guess: User's guessed number
+
 import random
 
 # Generate target number
