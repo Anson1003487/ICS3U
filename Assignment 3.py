@@ -12,22 +12,22 @@
 # Define an array containing up to 10 words (mix of palindromes and non-palindromes)
 words = ["racecar","noon","desk","civic","radar","level","school","rotor","refer","madam"]
 
-# Process each word in the array
+# Iterate through each word in the list
 for word in words:
-    is_palindrome = True  # Initialize palindrome flag
-    max_index = len(word) // 2  # Calculate midpoint for comparisons
+    is_palindrome = True  # Flag to track palindrome status
+    max_index = len(word) // 2  # Calculate midpoint for comparison
     
-    i = 0
-    # Compare characters from both ends toward the center
-    while i < max_index and is_palindrome:
+    # Compare characters from both ends towards the center using a for loop
+    for i in range(max_index):
         # Check front character (i) vs back character (-1 - i)
         if word[i] != word[-1 - i]:
             is_palindrome = False  # Mismatch found
-        i += 1  # Move to next character pair
     
-    # Display result using ternary operator
-    result = "a palindrome" if is_palindrome else "not a palindrome"
-    print(f"{word} is {result}")
+    # Determine and print the result
+    if is_palindrome:
+        print(f"{word} is a palindrome")
+    else:
+        print(f"{word} is not a palindrome")
 
-# Print termination message
+# Program termination message
 print("Goodbye!")
