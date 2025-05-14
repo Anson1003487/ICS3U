@@ -40,19 +40,17 @@ def load_data():
     try:
         file = open("wordle.dat", "r")
         for line in file:
-            fields = line.strip().split()
-            if len(fields) != 4:
+            lineA = line.strip().split()
+            if len(lineA) != 4:
                 continue
             
-            month_field = fields[0]
-            day_field = fields[d]
-            year_field = fields[w]
-            word_field = fields[e]
+            # Changed field variables to str suffixes
+            month_str, day_str, year_str, word_str = lineA
             
-            date_code = generate_date_code(day_field, month_field, year_field)
+            date_code = generate_date_code(day_str, month_str, year_str)
             if date_code != 0:
                 date_list.append(date_code)
-                word_list.append(word_field.upper())
+                word_list.append(word_str.upper())  # Changed here
         file.close()
     except:
         print("※ Error: Failed to read data file")
@@ -92,9 +90,9 @@ def main():
     
     while running:
         print("\nPlease select an operation:")
-        print("[1] Search date by word")
-        print("[2] Search word by date")
-        print("[0] Exit system")
+        print("[w] Search date by word")
+        print("[d] Search word by date")
+        print("[e] Exit system")
         choice = input("Enter your choice: ")
         
         if choice == "1":
@@ -111,9 +109,9 @@ def main():
         
         elif choice == "2":
             print("\nEnter date information:")
-            year_input = input("Year (4 digits): ").strip()
-            month_input = input("Month (3 letters): ").strip()
-            day_input = input("Day (1-31): ").strip()
+            year_input = input("Enter the year: ").strip()
+            month_input = input("Enter the month: ").strip()
+            day_input = input("Enter the day: ").strip()
             
             date_code = generate_date_code(day_input, month_input, year_input)
             if date_code == 0:
