@@ -1,0 +1,13 @@
+date="Jun 19 2021 CIGAR"
+lineA = date.split()
+print(lineA)
+mon = lineA[0]
+day = int(lineA[1])
+year = int(lineA[2])
+months=["Jan", "Feb", "Mar", "Apr", "May", "Jun"]
+monthNum = months.index(mon) + 1
+print(monthNum,day,year)
+dateN = year*10000 + monthNum*100 + day
+
+word = lineA[3]
+print(dateN, word)
