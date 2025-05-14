@@ -95,7 +95,7 @@ def main():
         print("[e] Exit system")
         choice = input("Enter your choice: ")
         
-        if choice == "1":
+        if choice == "w":
             input_word = input("Enter the word to search: ").strip()
             if not input_word:
                 print("! Please enter valid content")
@@ -107,7 +107,7 @@ def main():
             else:
                 print(f"! Word not found: {input_word.upper()}")
         
-        elif choice == "2":
+        elif choice == "d":
             print("\nEnter date information:")
             year_input = input("Enter the year: ").strip()
             month_input = input("Enter the month: ").strip()
@@ -128,7 +128,7 @@ def main():
             else:
                 print(f"→ Found word: {result}")
         
-        elif choice == "0":
+        elif choice == "e":
             print(" Thank you for using, goodbye! ")
             running = False
         
