@@ -1,3 +1,21 @@
+# Student Name: [Anson Tang]
+# Student Number: [1003487]
+# Course Code: ICS3U
+# Programming Assignment 3: Palindrome Checker
+# Variable Dictionary:
+#   month_dict - Dictionary mapping three-letter month abbreviations to two-digit strings (e.g., 'Jan' -> '01')
+#   date_numbers - List of integers representing dates in YYYYMMDD format
+#   words - List of uppercase words from the Wordle database
+#   user_choice - User's input choice ('w' for word search, 'd' for date search)
+#   target_word - The word the user is searching for (in uppercase)
+#   found - Boolean indicating if the target_word was found in the words list
+#   input_year - Year input by the user for date search
+#   input_month - Month abbreviation input by the user (capitalized)
+#   input_day - Day input by the user (padded with leading zero if necessary)
+#   search_date - Integer representing the date to search for in YYYYMMDD format
+#   date_found - Boolean indicating if the search_date was found in date_numbers
+#   idx - Index variable used in loops to iterate through lists
+
 # Month abbreviation to number mapping
 month_dict = {
     'Jan': '01', 'Feb': '02', 'Mar': '03', 'Apr': '04',
@@ -68,5 +86,3 @@ elif user_choice == 'd':
 
 # Exit message
 print("Goodbye!")
-
-
