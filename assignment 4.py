@@ -1,141 +1,72 @@
+# Month abbreviation to number mapping
+month_dict = {
+    'Jan': '01', 'Feb': '02', 'Mar': '03', 'Apr': '04',
+    'May': '05', 'Jun': '06', 'Jul': '07', 'Aug': '08',
+    'Sep': '09', 'Oct': '10', 'Nov': '11', 'Dec': '12'
+}
 
-# === Basic Function Modules ===
+# Arrays to store data
+date_numbers = []
+words = []
 
-# Month name to number mapping
-month_table = ["Jan","Feb","Mar","Apr","May","Jun",
-            "Jul","Aug","Sep","Oct","Nov","Dec"]
+# Read and process data file
+with open('wordle.dat') as file:
+    for line in file:
+        month_abbr, day, year, word = line.strip().split()
+        # Convert date to YYYYMMDD format
+        date_int = int(year + month_dict[month_abbr] + day)
+        date_numbers.append(date_int)
+        words.append(word.upper())  # Store words in uppercase
 
-def convert_month(month_input):
-    """Convert 3-letter month to number"""
-    formatted_month = month_input[:3].capitalize()
-    for index in range(12):
-        if month_table[index] == formatted_month:
-            return index + 1
-    return 0
+# Main program
+print("Welcome to the Wordle Database!")
+user_choice = input("Enter w if you're looking for a word, or d for a date: ").lower()
 
-def generate_date_code(day, month, year):
-    """Generate YYYYMMDD format number"""
-    month_num = convert_month(month)
-    if month_num == 0:
-        return 0
+# Word search functionality
+if user_choice == 'w':
+    target_word = input("What word are you looking for? ").upper()
+    found = False
     
-    # Process day format
-    if len(day) == 1:
-        day = "0" + day
-    elif len(day) != 2:
-        return 0
+    # Linear search through words list
+    for idx in range(len(words)):
+        if words[idx] == target_word:
+            print(f"The word {target_word} was the solution to the puzzle on {date_numbers[idx]}")
+            found = True
+            break
     
-    # Combine date
-    try:
-        return int(f"{year}{month_num:02}{day}")
-    except:
-        return 0
+    if not found:
+        print(f"{target_word} was not found in the database.")
 
-# === Data Loading ===
-def load_data():
-    """Load data from file into two lists"""
-    date_list = []
-    word_list = []
+# Date search functionality
+elif user_choice == 'd':
+    input_year = input("Enter the year: ")
+    input_month = input("Enter the month (3-letter abbreviation): ").capitalize()
+    input_day = input("Enter the day: ").zfill(2)  # Pad with leading zero if needed
     
-    try:
-        file = open("wordle.dat", "r")
-        for line in file:
-            lineA = line.strip().split()
-            if len(lineA) != 4:
-                continue
-            
-            # Changed field variables to str suffixes
-            month_str, day_str, year_str, word_str = lineA
-            
-            date_code = generate_date_code(day_str, month_str, year_str)
-            if date_code != 0:
-                date_list.append(date_code)
-                word_list.append(word_str.upper())  # Changed here
-        file.close()
-    except:
-        print("※ Error: Failed to read data file")
-    
-    return date_list, word_list
-
-# === Search Functions ===
-def find_date(target_word, word_db, date_db):
-    """Find date by word"""
-    target_upper = target_word.upper()
-    for index in range(len(word_db)):
-        if word_db[index] == target_upper:
-            return date_db[index]
-    return 0
-
-def find_word(target_date, date_db, word_db):
-    """Find word by date"""
-    if target_date < 20210619:
-        return "Too early"
-    if target_date > 20240421:
-        return "Too late"
-    
-    for index in range(len(date_db)):
-        if date_db[index] == target_date:
-            return word_db[index]
-    return "No record"
-
-# === User Interface ===
-def main():
-    """Main program flow"""
-    all_dates, all_words = load_data()
-    if not all_dates:
-        return
-    
-    print(" Wordle Database Query System ")
-    running = True
-    
-    while running:
-        print("\nPlease select an operation:")
-        print("[w] Search date by word")
-        print("[d] Search word by date")
-        print("[e] Exit system")
-        choice = input("Enter your choice: ")
+    # Validate month input
+    if input_month not in month_dict:
+        print("Invalid month abbreviation.")
+    else:
+        # Create date integer
+        search_date = int(input_year + month_dict[input_month] + input_day)
         
-        if choice == "w":
-            input_word = input("Enter the word to search: ").strip()
-            if not input_word:
-                print("! Please enter valid content")
-                continue
-                
-            found_date = find_date(input_word, all_words, all_dates)
-            if found_date:
-                print(f"→ Found record: Word 【{input_word.upper()}】 appears on {found_date}")
-            else:
-                print(f"! Word not found: {input_word.upper()}")
-        
-        elif choice == "d":
-            print("\nEnter date information:")
-            year_input = input("Enter the year: ").strip()
-            month_input = input("Enter the month: ").strip()
-            day_input = input("Enter the day: ").strip()
-            
-            date_code = generate_date_code(day_input, month_input, year_input)
-            if date_code == 0:
-                print("! Invalid date format")
-                continue
-                
-            result = find_word(date_code, all_dates, all_words)
-            if result == "Too early":
-                print("Date is earlier than 2021-06-19, no records")
-            elif result == "Too late":
-                print("Date is later than 2024-04-21, no records")
-            elif result == "No record":
-                print("No word record for this date")
-            else:
-                print(f"→ Found word: {result}")
-        
-        elif choice == "e":
-            print(" Thank you for using, goodbye! ")
-            running = False
-        
+        # Validate date range
+        if search_date < 20210619:
+            print(f"{search_date} is too early. No Wordles occurred before 20210619.")
+        elif search_date > 20240421:
+            print(f"{search_date} is too recent. Our records only go as late as 20240421.")
         else:
-            print("! Invalid choice, please try again")
+            # Search for date in database
+            date_found = False
+            for idx in range(len(date_numbers)):
+                if date_numbers[idx] == search_date:
+                    print(f"The word entered on {search_date} was {words[idx]}.")
+                    date_found = True
+                    break
+            if not date_found:
+                print(f"No word found for the date {search_date}.")
 
-# === Start Program ===
-if __name__ == "__main__":
-    main()
+# Exit message
+print("Goodbye!")
+
 
