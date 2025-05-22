@@ -1,0 +1,14 @@
+import math
+
+# Print table headers
+print("  N|  SQR|  Cubes|Roots")
+print("---+-----+-------+-----")
+
+# Generate values for N from 10 to 200 (inclusive) with step 15
+for n in range(10, 201, 15):
+    square = n ** 2
+    cube = n ** 3
+    root = math.sqrt(n)
+    
+    # Format and print each row
+    print(f"{n:3}|{square:5}|{cube:7}|{root:5.2f}")
