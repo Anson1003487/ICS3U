@@ -1,0 +1,11 @@
+Predicted Output: For input 5, the output will be:
+The area of a square of side length 5.0 is: 25.0.
+
+import math
+radius = float(input("Input the circle's radius: "))
+square_area = 4 * math.pow(radius, 2)
+semicircle_area = 0.5 * math.pi * math.pow(radius, 2)
+total_area = square_area + semicircle_area
+print("Area is:", total_area)
+
+Sample Input: 5 → Output: 139.26990816987242.
