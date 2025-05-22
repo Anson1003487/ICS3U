@@ -1,0 +1,25 @@
+Predictions:
+
+A: The nested loops print each row's elements separated by spaces. The output will be:
+
+3 4 1 2 6 
+9 2 3 7 5 
+4 2 1 0 3 
+B: Printing ar2 directly displays the 2D list structure. The output will be:
+
+python
+[[3, 4, 1, 2, 6], [9, 2, 3, 7, 5], [4, 2, 1, 0, 3]]
+Modified Code:
+To compute row sums and print them as 16, 26, 10:
+
+python
+ar2 = [[3, 4, 1, 2, 6],
+       [9, 2, 3, 7, 5],
+       [4, 2, 1, 0, 3]]
+
+# Calculate sums of each row
+sums = [sum(row) for row in ar2]
+
+# Print the sums in the desired format
+print(sums)
+Output: [16, 26, 10]
