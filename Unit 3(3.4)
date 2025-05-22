@@ -1,0 +1,30 @@
+Task 1: Find Largest Number
+Solution Code:
+
+python
+myList = [22, 16, 59, 67, 55, 84, 7, 91, 89, 48, 69, 30, 98, 28, 31]  
+
+highest = myList[0]  
+for num in myList:  
+    if num > highest:  
+        highest = num  
+print(f"The largest number is: {highest}")  # Output: 98  
+
+Task 2: Find Smallest Number
+Modified Code:
+
+python
+smallest = myList[0]  
+for num in myList:  
+    if num < smallest:  
+        smallest = num  
+print(f"The smallest number is: {smallest}")  # Output: 7  
+
+Task 3: Calculate Sum
+Modified Code:
+
+python
+total = 0  
+for num in myList:  
+    total += num  
+print(f"The sum is: {total}")  # Output: 794  
