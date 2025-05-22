@@ -1,0 +1,24 @@
+ode Predictions
+A: The loop calculates the length of each string in items → sizes = [6, 7, 8, 4].
+
+B: The loop prints each item’s length and name → Output:
+
+6 Apples
+7 Bananas
+8 Cherries
+4 Dosa
+
+Modified Code to Check Length Consistency
+python
+items = ["Apples", "Bananas", "Cherries", "Dosa"]
+sizes = []
+
+# Original code to generate sizes
+for i in range(len(items)):
+    sizeI = len(items[i])
+    sizes.append(sizeI)
+
+# New loop to validate lengths
+for i in range(len(items)):
+    is_match = (sizes[i] == len(items[i]))
+    print(f"Index {i}: {is_match}")
