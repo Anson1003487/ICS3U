@@ -1,0 +1,31 @@
+Solution Code:
+
+python
+def is_magic_square(file_path):  
+    with open(file_path, 'r') as fh:  
+        n = int(fh.readline().strip())  
+        data = []  
+        for line in fh:  
+            line = line.strip()  
+            if line:  
+                data += list(map(int, line.split()))  
+
+        # Validate total elements  
+        if len(data) != n * n:  
+            return False  
+
+        # Check numbers 1 to n²  
+        required = set(range(1, n*n + 1))  
+        if set(data) != required:  
+            return False  
+
+        # Create 2D array  
+        magic_square = [data[i*n : (i+1)*n] for i in range(n)]  
+
+        # Calculate target sum (first row)  
+        target = sum(magic_square[0])  
+
+        # Check rows  
+        for row in magic_square:  
+            if sum(row) != target:  
+                return
