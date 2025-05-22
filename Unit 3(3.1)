@@ -1,0 +1,32 @@
+Code Predictions
+A: print(items) → Output: ['Apples', 'Bananas', 'Cherries', 'Dosa'].
+
+B: print(len(items)) → Output: The number of items is 4..
+
+C: Loop prints each item → Output:
+
+Apples
+Bananas
+Cherries
+Dosa
+
+D: Loop prints indices and items → Output:
+
+0 Apples
+1 Bananas
+2 Cherries
+3 Dosa
+
+Modified Code for User Input
+python
+num_items = int(input("How many items are you entering? "))
+items = []
+
+print("Enter your items now:")
+for _ in range(num_items):
+    item = input("Next item: ")
+    items.append(item)
+
+print(f"You have entered {len(items)} items.")
+for item in items:
+    print(item)
