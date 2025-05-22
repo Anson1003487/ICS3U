@@ -1,0 +1,32 @@
+Predictions:
+
+A: print(progname) → Output: Python.
+
+B: print(progname[0]) → Output: P.
+
+C: The loop prints each character in progname without spaces or newlines → Output: Python.
+
+F: The loop prints indices and characters → Output:
+
+0 P
+1 y
+2 t
+3 h
+4 o
+5 n
+Questions:
+
+D: sep="" removes default spaces between characters; end="" suppresses newlines.
+
+E: The empty print() adds a newline after the loop.
+
+Modified Code to Count Spaces
+python
+progname = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis in."
+space_count = 0
+
+for char in progname:
+    if char == " ":
+        space_count += 1
+
+print(f"There are {space_count} spaces in the text.")
