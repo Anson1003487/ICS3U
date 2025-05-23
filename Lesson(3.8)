@@ -1,0 +1,28 @@
+Humidex Function
+
+python
+import math
+
+def hx(TdegC: float, dewPtC: float) -> float:
+    p = 5417.753 * (1/273.15 - 1/(273.15 + dewPtC))
+    Th = TdegC + (5/9) * (6.11 * math.exp(p) - 10)
+    return Th
+
+# Sample Output
+T, D = 28.0, 26.0
+print(f"H={hx(T, D):6.3f} T={T:6.3f} D={D:6.3f}")  # Output: H=41.474 T=28.000 D=26.000
+
+2. Health Warning
+
+python
+def health_warning(H: float) -> str:
+    if H < 30:
+        return "Normal"
+    elif 30 <= H < 40:
+        return "Some discomfort"
+    elif 40 <= H < 45:
+        return "Great discomfort"
+    elif 45 <= H < 50:
+        return "Dangerous"
+    else:
+        return "Heat stroke likely"
