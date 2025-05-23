@@ -1,0 +1,32 @@
+Wind Chill Function
+
+python
+import math
+
+def wc(TdegC: float, windKPH: float) -> float:
+    if windKPH < 0:
+        return "Error: Wind speed must be ≥ 0"
+    V = windKPH ** 0.16
+    Tw = 13.12 + 0.6215 * TdegC - 11.37 * V + 0.3965 * TdegC * V
+    return Tw
+
+# Sample Output
+T, W = -5.0, 10.0
+print(f"WC={wc(T, W):8.3f} T={T:8.3f} W={W:6.3f} km/h")  # Output: WC= -9.288 T= -5.000 W=10.000 km/h
+
+2. Risk Warning
+
+python
+def warn_risk(Tw: float) -> str:
+    if Tw >= 0:
+        return "Low risk"
+    elif -9 >= Tw >= -27:
+        return "Moderate risk of hypothermia"
+    elif -28 >= Tw >= -39:
+        return "High risk of frostbite"
+    elif -40 >= Tw >= -47:
+        return "Severe risk: frostbite in 5-10 min"
+    elif -48 >= Tw >= -54:
+        return "Severe risk: frostbite in 2-5 min"
+    else:
+        return "Extreme risk: frostbite in <2 min"
