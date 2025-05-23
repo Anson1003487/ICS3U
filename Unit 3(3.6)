@@ -1,0 +1,38 @@
+Factorize Function
+
+python
+def factorize(N: int) -> list:
+    if N <= 0:
+        return []
+    factors = []
+    for i in range(1, int(N**0.5) + 1):
+        if N % i == 0:
+            if i != N:
+                factors.append(i)
+            if i != 1 and i != N // i and N // i != N:
+                factors.append(N // i)
+    return sorted(factors)
+
+# Example
+print(factorize(6))  # Output: [1, 2, 3]
+
+ Sum Function and Classification
+
+python
+def sum_factors(factors: list) -> int:
+    return sum(factors)
+
+def classify_number(N: int):
+    factors = factorize(N)
+    total = sum_factors(factors)
+    if total == N:
+        return "perfect"
+    elif total > N:
+        return "abundant"
+    else:
+        return "deficient"
+
+# Sample Session
+N = 6
+print(f"Factor sum: {sum_factors(factorize(N))}")  # Output: 6
+print(f"{N} is {classify_number(N)}")  # Output: 6 is perfect
