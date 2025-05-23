@@ -1,0 +1,38 @@
+Predict Output of add(7, 2)
+
+Code:
+
+python
+def add(a: float, b: float) -> float:
+    sum = a + b
+    return sum
+print(add(7, 2))
+Output: 9.0
+
+Data Type: float (since the return type is declared as float).
+
+2. Modify 1: Check Data Types
+
+Example 1:
+
+python
+sum = add(7.0, 2.0)
+print(sum)  # Output: 9.0 (type: float)
+Example 2:
+
+python
+sum = add("7", "2")  # Concatenates strings: "72" (type: str)
+Example 3:
+
+python
+sum = add("book", "keeper")  # Returns "bookkeeper" (type: str)
+3. Modify 2: Absolute Value Function
+
+python
+def myAbs(n: float) -> float:
+    return -n if n < 0 else n
+
+# Test
+b = -12
+a = myAbs(b)
+print(f"The absolute value of {b} is {a}")  # Output: The absolute value of -12 is 12
