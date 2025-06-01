@@ -1,0 +1,19 @@
+S = [] 
+
+def fib(n): 
+    global S
+    if n == 1:
+        S.append(1)
+    elif n == 2:
+        if len(S) < 2:
+            fib(1)
+            S.append(1)
+    else:
+        fib(n-1)
+        next_val = S[n-2] + S[n-3]
+        S.append(next_val)
+
+S = []  
+n = 45
+fib(n)
+print(S)
