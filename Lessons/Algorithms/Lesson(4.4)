@@ -1,0 +1,10 @@
+def triangle(ch, num):  
+    if num == 0:  
+        return
+    print(ch * num) 
+    triangle(ch, num - 1)  
+
+Test
+ch = "#"
+n = 8
+triangle(ch, n)
