@@ -1,0 +1,20 @@
+def validate(number):
+    digits = [int(d) for d in str(number)][::-1]
+    total = 0
+    
+    for i in range(len(digits)):
+        if i % 2 == 1: 
+            doubled = digits[i] * 2
+            total += doubled if doubled < 10 else doubled - 9
+        else:
+            total += digits[i]
+    
+    return total % 10 == 0
+
+print("Validate a number with the Luhn Algorithm!")
+num_str = input("Enter any number: ").strip()
+
+if validate(num_str):
+    print(f"{num_str} is a valid number.")
+else:
+    print(f"{num_str} is not a valid number.")
