@@ -4,7 +4,6 @@ def triangle(ch, num):
     print(ch * num) 
     triangle(ch, num - 1)  
 
-Test
 ch = "#"
 n = 8
 triangle(ch, n)
