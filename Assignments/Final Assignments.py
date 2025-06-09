@@ -1,4 +1,35 @@
+"""
+Author : Anson Tang
+Student Number: 1003487
+Revison date : 16 Jan 2025
+Program : Credit Card Report
+Description : Report of all credit cards in the customer database that have expired.
+
+VARIABLE DICTIONARY :
+    filename: str - Name of the input file (data.dat)
+    f: file object - File handle for input file
+    lines: list - List of all lines from input file
+    names: list - List of customer full names (first + last)
+    cc_nums: list - List of credit card numbers
+    cc_types: list - List of credit card types (Visa/MasterCard)
+    expiry_dates: list - List of expiry dates in YYYYMM format
+    parts: list - Temporary storage for split line components
+    given_name: str - Customer's first name
+    surname: str - Customer's last name
+    cc_type: str - Credit card type from record
+    cc_number: str - Credit card number from record
+    exp_mo: str - Expiry month string
+    exp_yr: str - Expiry year string
+    i: int - Loop index for processing records
+    status: str - Card status (EXPIRED/RENEW IMMEDIATELY)
+    name_display: str - Formatted name with colon
+    expiry_str: str - String representation of expiry date
+    out_line: str - Formatted output line
+    out_file: file object - Output file handle
+"""
+
 def mergeSort(arr, arr2, arr3, arr4, l, r):
+    """Sort arrays using merge sort algorithm"""
     if l < r:
         m = l + (r - l) // 2
         mergeSort(arr, arr2, arr3, arr4, l, m)
@@ -6,6 +37,7 @@ def mergeSort(arr, arr2, arr3, arr4, l, r):
         merge(arr, arr2, arr3, arr4, l, m, r)
 
 def merge(arr, arr2, arr3, arr4, l, m, r):
+    """Merge two sorted subarrays"""
     n1 = m - l + 1
     n2 = r - m
     L = [0] * n1
@@ -63,57 +95,77 @@ def merge(arr, arr2, arr3, arr4, l, m, r):
         j += 1
         k += 1
 
-filename = "data.dat"
-fh = open(filename, 'r')
-lines = fh.readlines()
-first_line = lines.pop(0)
-
-names = []
-cc_nums = []
-cc_types = []
-expiry_dates = []
-
-for line in lines:
-    parts = line.strip().split(',')
-    if len(parts) < 6:
-        continue
+# Main program
+if __name__ == "__main__":
+    # Open and read input file
+    filename = "data.dat"
+    with open(filename, 'r') as f:
+        lines = f.readlines()
+    
+    # Remove header line
+    if lines:
+        lines.pop(0)
+    
+    # Initialize data storage lists
+    names = []
+    cc_nums = []
+    cc_types = []
+    expiry_dates = []
+    
+    # Process each record line
+    for line in lines:
+        # Split line into components
+        parts = line.strip().split(',')
+        if len(parts) < 6:
+            continue
+            
+        # Extract and clean fields
+        given_name = parts[0].strip()
+        surname = parts[1].strip()
+        cc_type = parts[2].strip()
+        cc_number = parts[3].strip()
+        exp_mo = parts[4].strip()
+        exp_yr = parts[5].strip()
         
-    given_name = parts[0].strip()
-    surname = parts[1].strip()
-    cc_type = parts[2].strip()
-    cc_number = parts[3].strip()
-    exp_mo = parts[4].strip()
-    exp_yr = parts[5].strip()
+        # Store formatted name
+        names.append(f"{given_name} {surname}")
+        
+        # Store credit card details
+        cc_types.append(cc_type)
+        cc_nums.append(cc_number)
+        
+        # Format expiry date as YYYYMM integer
+        if len(exp_mo) == 1:
+            exp_mo = '0' + exp_mo
+        expiry_dates.append(int(exp_yr + exp_mo))
     
-    name = f"{given_name} {surname}"
-    names.append(name)
-    cc_types.append(cc_type)
-    cc_nums.append(cc_number)
+    # Sort all data by expiry date
+    if expiry_dates:
+        mergeSort(expiry_dates, names, cc_nums, cc_types, 0, len(expiry_dates)-1)
     
-    if len(exp_mo) == 1:
-        exp_mo = '0' + exp_mo
-    expiry_date = int(exp_yr + exp_mo)
-    expiry_dates.append(expiry_date)
-
-fh.close()
-
-mergeSort(expiry_dates, names, cc_nums, cc_types, 0, len(expiry_dates)-1)
-
-output_file_name = "output.txt"
-with open(output_file_name, "w") as output_file:
-    for i in range(len(expiry_dates)):
-        if expiry_dates[i] > 202506:  # June 2025 threshold
-            break
+    # Generate report with clean, minimal output
+    with open("output.txt", "w") as out_file:
+        for i in range(len(expiry_dates)):
+            # Skip cards after June 2025
+            if expiry_dates[i] > 202506:
+                continue
+                
+            # Determine card status
+            if expiry_dates[i] < 202406:  # Before June 2024
+                status = "EXPIRED"
+            else:  # June 2024 to June 2025
+                status = "RENEW IMMEDIATELY"
             
-        if expiry_dates[i] < 202406:  # Before June 2024
-            status = "EXPIRED"
-        else:  # June 2024 - June 2025
-            status = "RENEW IMMEDIATELY"
+            # Prepare formatted components
+            name_display = names[i] + ':'
+            expiry_str = str(expiry_dates[i])
             
-        # Format expiry date as string for proper alignment
-        expiry_str = str(expiry_dates[i])
-        output_line = f"{names[i] + ':':<20} {cc_types[i]:<12} #{cc_nums[i]} {expiry_str} {status}"
-        print(output_line)
-        output_file.write(output_line + "\n")
-
-print(f"\nOutput sent to {output_file_name}")
+            # Create output line matching assignment example
+            out_line = f"{name_display:<20} {cc_types[i]:<12} #{cc_nums[i]} {expiry_str} {status}"
+            
+            # Write to file and print to console
+            print(out_line)
+            out_file.write(out_line + "\n")
+    
+    # Final confirmation
+    print("\nReport generated successfully. Output saved to output.txt")
