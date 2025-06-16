@@ -1,7 +1,6 @@
 """
 Author : Anson Tang
 Student Number: 1003487
-Revison date : 16 Jan 2025
 Program : Credit Card Report
 Description : Report of all credit cards in the customer database that have expired.
 
